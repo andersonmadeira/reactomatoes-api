@@ -1,17 +1,19 @@
 ## 🍅🎥 reactomatoes-api
 
-api para o reactomatoes
+api project for reactomatoes
 
-## Executar
+## Running
 
-Primeiro instale as dependências:
+First install all dependencies:
 
 `npm install`
 
-Depois gere o arquivo `.env` a partir do exemplo e coloque a chave de acesso à API do OMDB no arquivo final .env:
+Then generate the `.env` file from the example:
 
 `cp .env.example .env`
 
-Então rode a aplicação:
+Put the access key for OMDB API in the .env file generated above.
+
+Finally run it:
 
 `npm run dev`
