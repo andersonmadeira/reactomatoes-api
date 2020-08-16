@@ -1,8 +1,8 @@
 {
   "name": "reactomatoes-api",
-  "version": "0.1.0",
   "description": "Movie Directory App",
-  "main": "index.js",
+  "version": "1.0.0",
+  "main": "src/app.js",
   "scripts": {
     "start": "node src/app",
     "dev": "nodemon src/app"

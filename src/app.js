@@ -2,7 +2,9 @@ const express = require('express')
 const helmet = require('helmet')
 const bodyParser = require('body-parser')
 const dotenv = require('dotenv-safe')
-dotenv.config()
+dotenv.config({
+  allowEmptyValues: true,
+})
 
 const { cors } = require('./middlewares')
 
@@ -18,6 +20,6 @@ app.use(cors)
 
 app.use('/api', moviesRouter)
 
-app.listen(port, function() {
+app.listen(port, function () {
   console.log(`Listening on port ${port}`)
 })
