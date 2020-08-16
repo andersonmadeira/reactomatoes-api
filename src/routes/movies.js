@@ -1,12 +1,12 @@
 const express = require('express')
-const { fetchMediaById, fetchMediaByTitle } = require('../services/omdb')
+const { fetchMovieById, fetchMoviesByTitle } = require('../services/omdb')
 
 const router = express.Router()
 
 router.get('/', function (req, res) {
   const { search } = req.query
 
-  fetchMediaByTitle(search)
+  fetchMoviesByTitle(search)
     .then((data) => res.send(data.Search))
     .catch((err) => {
       switch (err.Error) {
@@ -31,7 +31,7 @@ router.get('/', function (req, res) {
 router.get('/:id', function (req, res) {
   const { id } = req.params
 
-  fetchMediaById(id)
+  fetchMovieById(id)
     .then((data) => res.send(data))
     .catch((err) => {
       switch (err.Error) {

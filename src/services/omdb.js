@@ -10,7 +10,7 @@ function wasRequestSuccessful(response) {
   return response.data.Response === 'True'
 }
 
-function fetchMediaByTitle(title) {
+function fetchMoviesByTitle(title) {
   return new Promise((resolve, reject) => {
     return api
       .get(`/?s=${title}&${API_KEY_PARAM}`)
@@ -25,7 +25,7 @@ function fetchMediaByTitle(title) {
   })
 }
 
-function fetchMediaById(id) {
+function fetchMovieById(id) {
   return new Promise((resolve, reject) => {
     return api
       .get(`/?plot=full&i=${id}&${API_KEY_PARAM}`)
@@ -41,6 +41,6 @@ function fetchMediaById(id) {
 }
 
 module.exports = {
-  fetchMediaByTitle,
-  fetchMediaById,
+  fetchMoviesByTitle,
+  fetchMovieById,
 }
