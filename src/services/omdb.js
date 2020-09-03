@@ -13,7 +13,7 @@ function wasRequestSuccessful(response) {
 function fetchMoviesByTitle(title) {
   return new Promise((resolve, reject) => {
     return api
-      .get(`/?s=${title}&${API_KEY_PARAM}`)
+      .get(`/?type=movie&s=${title}&${API_KEY_PARAM}`)
       .then((response) => {
         if (wasRequestSuccessful(response)) {
           resolve(response.data)
@@ -28,7 +28,7 @@ function fetchMoviesByTitle(title) {
 function fetchMovieById(id) {
   return new Promise((resolve, reject) => {
     return api
-      .get(`/?plot=full&i=${id}&${API_KEY_PARAM}`)
+      .get(`/?type=movie&plot=full&i=${id}&${API_KEY_PARAM}`)
       .then((response) => {
         if (wasRequestSuccessful(response)) {
           resolve(response.data)
