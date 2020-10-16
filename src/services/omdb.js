@@ -1,6 +1,7 @@
 const axios = require('axios')
+const querystring = require('querystring')
 
-const API_KEY_PARAM = `apikey=${process.env.OMDB_API_KEY}`
+const defaultQueryParams = { type: 'movie', apikey: process.env.OMDB_API_KEY }
 
 const api = axios.create({
   baseURL: `https://www.omdbapi.com`,
@@ -11,10 +12,14 @@ function wasRequestSuccessful(response) {
 }
 
 function fetchMoviesByTitle(title) {
+  const queryParams = { ...defaultQueryParams, ...(title ? { s: title } : {}) }
+  const strQueryParams = querystring.stringify(queryParams)
+
   return new Promise((resolve, reject) => {
     return api
-      .get(`/?type=movie&s=${title}&${API_KEY_PARAM}`)
+      .get(`/?${strQueryParams}`)
       .then((response) => {
+        console.log('response:', response.data)
         if (wasRequestSuccessful(response)) {
           resolve(response.data)
         } else {
@@ -26,9 +31,16 @@ function fetchMoviesByTitle(title) {
 }
 
 function fetchMovieById(id) {
+  const queryParams = {
+    ...defaultQueryParams,
+    plot: 'full',
+    i: id,
+  }
+  const strQueryParams = querystring.stringify(queryParams)
+
   return new Promise((resolve, reject) => {
     return api
-      .get(`/?type=movie&plot=full&i=${id}&${API_KEY_PARAM}`)
+      .get(`/?${strQueryParams}`)
       .then((response) => {
         if (wasRequestSuccessful(response)) {
           resolve(response.data)

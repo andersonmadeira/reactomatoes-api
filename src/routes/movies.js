@@ -6,6 +6,13 @@ const router = express.Router()
 router.get('/', function (req, res) {
   const { search } = req.query
 
+  if (!search) {
+    res.status(400).send({
+      message: 'Please inform a search term!',
+    })
+    return
+  }
+
   fetchMoviesByTitle(search)
     .then((data) => res.send(data.Search))
     .catch((err) => {
@@ -37,12 +44,12 @@ router.get('/:id', function (req, res) {
       switch (err.Error) {
         case 'Incorrect IMDb ID.':
           res.status(404).send({
-            message: 'Movie not found!'
+            message: 'Movie not found!',
           })
           break
         default:
           res.status(500).send({
-            message: 'Something weird happened!'
+            message: 'Something weird happened!',
           })
       }
     })

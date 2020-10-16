@@ -25,7 +25,7 @@ app.use(
   })
 )
 
-app.use('/api', moviesRouter)
+app.use('/api/v1/movies', moviesRouter)
 
 app.listen(port, function () {
   console.log(`Listening on port ${port}`)
